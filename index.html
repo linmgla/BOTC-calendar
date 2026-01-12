@@ -28,6 +28,7 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
         }
         
         header {
@@ -43,6 +44,7 @@
             justify-content: center;
             position: relative;
             transition: all 0.3s ease;
+            flex-wrap: wrap;
         }
         
         .dark-theme header {
@@ -55,6 +57,8 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
+            width: 100%;
         }
         
         .header-logo {
@@ -81,18 +85,20 @@
             align-items: center;
             flex-shrink: 1;
             min-width: 0;
+            max-width: 100%;
         }
         
         h1 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             line-height: 1.2;
             word-wrap: break-word;
+            text-align: center;
         }
         
         .by-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: normal;
             color: rgba(255, 255, 255, 0.9);
             margin-top: 5px;
@@ -100,11 +106,8 @@
         }
         
         .theme-toggle {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 10px 20px;
+            position: relative;
+            padding: 10px 15px;
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
@@ -113,19 +116,17 @@
             font-weight: 600;
             transition: all 0.3s ease;
             white-space: nowrap;
+            font-size: 14px;
         }
         
         .theme-toggle:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.05);
+            transform: scale(1.05);
         }
         
         .refresh-btn {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 10px 20px;
+            position: relative;
+            padding: 10px 15px;
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
@@ -134,17 +135,18 @@
             font-weight: 600;
             transition: all 0.3s ease;
             white-space: nowrap;
+            font-size: 14px;
         }
         
         .refresh-btn:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.05);
+            transform: scale(1.05);
         }
         
         .refresh-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: translateY(-50%) !important;
+            transform: none !important;
         }
         
         .loading-overlay {
@@ -211,6 +213,7 @@
             color: #1864ab;
             text-align: center;
             transition: all 0.3s ease;
+            word-break: break-word;
         }
         
         .dark-theme .update-info {
@@ -225,6 +228,7 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            overflow: hidden;
         }
         
         .dark-theme .filters-container {
@@ -243,6 +247,7 @@
             font-weight: 600;
             color: #555;
             transition: color 0.3s ease;
+            flex-shrink: 0;
         }
         
         .dark-theme .filter-label {
@@ -250,7 +255,7 @@
         }
         
         .filter-btn {
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -260,6 +265,7 @@
             position: relative;
             overflow: hidden;
             outline: none;
+            flex-shrink: 0;
         }
         
         .filter-btn:hover {
@@ -289,6 +295,9 @@
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .dark-theme .calendar-container {
@@ -305,6 +314,26 @@
             border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s ease;
+            min-width: 800px;
+        }
+        
+        @media (max-width: 1024px) {
+            .calendar-grid {
+                min-width: 700px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-grid {
+                min-width: 600px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .calendar-grid {
+                min-width: 450px;
+            }
         }
         
         .dark-theme .calendar-grid {
@@ -323,6 +352,7 @@
             padding: 15px 5px;
             font-weight: 600;
             transition: all 0.3s ease;
+            min-width: 100px;
         }
         
         .dark-theme .weekday-cell {
@@ -336,6 +366,7 @@
             position: relative;
             border-bottom: 1px solid #f1f3f5;
             transition: all 0.3s ease;
+            min-width: 100px;
         }
         
         .dark-theme .day-cell {
@@ -356,7 +387,7 @@
         }
         
         .day-number {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #212529;
             margin-bottom: 8px;
@@ -371,7 +402,7 @@
         }
         
         .date-text {
-            font-size: 14px;
+            font-size: 12px;
             color: #6c757d;
             transition: color 0.3s ease;
         }
@@ -383,7 +414,7 @@
         .event {
             padding: 8px 10px;
             margin: 6px 0;
-            font-size: 13px;
+            font-size: 12px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -413,8 +444,8 @@
         
         .event-time {
             font-weight: 600;
-            font-size: 12px;
-            min-width: 35px;
+            font-size: 11px;
+            min-width: 30px;
             flex-shrink: 0;
         }
         
@@ -424,6 +455,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-size: 12px;
         }
         
         .dark-theme .event:not(.hidden) .event-time,
@@ -445,6 +477,7 @@
             font-style: italic;
             min-height: 120px;
             transition: all 0.3s ease;
+            min-width: 100px;
         }
         
         .dark-theme .empty-cell {
@@ -475,6 +508,8 @@
             align-items: center;
             justify-content: space-between;
             transition: all 0.3s ease;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .status-indicator {
@@ -527,6 +562,7 @@
         
         .instructions li {
             margin-bottom: 5px;
+            font-size: 14px;
         }
         
         .custom-tooltip {
@@ -579,6 +615,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
         }
         
         .event-modal.active {
@@ -589,7 +626,7 @@
         .modal-content {
             background-color: white;
             border-radius: 12px;
-            width: 90%;
+            width: 100%;
             max-width: 500px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
@@ -668,7 +705,7 @@
         }
         
         .modal-btn {
-            padding: 10px 24px;
+            padding: 10px 20px;
             border: none;
             border-radius: 6px;
             font-weight: 600;
@@ -726,6 +763,16 @@
             display: block;
         }
         
+        /* 新增手機端樣式優化 */
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -735,14 +782,6 @@
                 flex-direction: column;
                 padding: 15px;
                 gap: 15px;
-            }
-            
-            .theme-toggle, .refresh-btn {
-                position: static;
-                transform: none;
-                width: 100%;
-                max-width: 200px;
-                margin: 5px 0;
             }
             
             .header-content {
@@ -757,8 +796,13 @@
             }
             
             h1 {
-                font-size: 1.8rem;
-                text-align: center;
+                font-size: 1.6rem;
+            }
+            
+            .theme-toggle, .refresh-btn {
+                width: auto;
+                padding: 8px 15px;
+                font-size: 13px;
             }
             
             .filters {
@@ -769,11 +813,15 @@
             .filter-btn {
                 width: 100%;
                 text-align: center;
+                padding: 8px 15px;
             }
             
-            .calendar-grid {
-                grid-template-columns: repeat(7, 1fr);
-                font-size: 0.9rem;
+            .calendar-container {
+                padding: 15px;
+                margin-left: -10px;
+                margin-right: -10px;
+                width: calc(100% + 20px);
+                border-radius: 0;
             }
             
             .day-cell {
@@ -787,14 +835,25 @@
                 margin: 4px 0;
             }
             
+            .event-time {
+                font-size: 10px;
+                min-width: 28px;
+            }
+            
+            .event-title {
+                font-size: 11px;
+            }
+            
             .status-bar {
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+                padding: 15px;
             }
             
             .status-indicator {
                 justify-content: center;
+                font-size: 12px;
             }
             
             .modal-content {
@@ -809,32 +868,6 @@
             .modal-btn {
                 width: 100%;
             }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .calendar-grid {
-                grid-template-columns: repeat(7, 1fr);
-            }
-            
-            .day-number {
-                font-size: 16px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2px;
-            }
-            
-            .date-text {
-                font-size: 12px;
-            }
-            
-            .event-time {
-                font-size: 10px;
-                min-width: 30px;
-            }
             
             .instructions {
                 padding: 15px;
@@ -843,13 +876,74 @@
             .instructions ul {
                 margin-left: 15px;
             }
+            
+            .instructions li {
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .day-number {
+                font-size: 14px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            
+            .date-text {
+                font-size: 11px;
+            }
+            
+            .calendar-grid {
+                min-width: 100%;
+            }
+            
+            .weekday-cell, .day-cell, .empty-cell {
+                min-width: 80px;
+            }
+            
+            .event-time {
+                font-size: 9px;
+                min-width: 25px;
+            }
+            
+            .event-title {
+                font-size: 10px;
+            }
+        }
+        
+        /* 新增手機端橫向滾動提示 */
+        .mobile-scroll-hint {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: #e7f5ff;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1864ab;
+            font-weight: 500;
+        }
+        
+        .dark-theme .mobile-scroll-hint {
+            background: #1a365d;
+            color: #90cdf4;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-scroll-hint {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <button class="theme-toggle" id="themeToggle">🌙 切換暗色主題</button>
             <div class="header-content">
                 <div class="header-logo">
                     <img src="https://i.meee.com.tw/ctqdoRm.png" alt="血染鐘樓 Logo" loading="lazy">
@@ -859,13 +953,20 @@
                     <div class="by-text">by 曉風</div>
                 </div>
             </div>
-            <button class="refresh-btn" id="refreshBtn">🔄 重新整理</button>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">🌙 暗色主題</button>
+                <button class="refresh-btn" id="refreshBtn">🔄 重新整理</button>
+            </div>
         </header>
         
         <div class="error-message" id="errorMessage"></div>
         
         <div class="update-info" id="updateInfo">
             正在載入數據...
+        </div>
+        
+        <div class="mobile-scroll-hint" id="mobileScrollHint">
+            ← 左右滑動查看完整行事曆 →
         </div>
         
         <div class="filters-container">
@@ -957,6 +1058,7 @@
                 <li>點擊「重新整理」按鈕可從 Google Sheets 獲取最新數據</li>
                 <li>數據會自動緩存 5 分鐘，減少不必要的網絡請求</li>
                 <li>點擊「切換暗色主題」可切換亮色/暗色主題</li>
+                <li><strong>手機用戶：可左右滑動查看完整行事曆</strong></li>
             </ul>
         </div>
     </div>
@@ -1001,19 +1103,6 @@
         // 隱藏的地點（默認都顯示）
         let hiddenLocations = new Set();
         
-        // 工具函數：防抖動
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-        
         // 主題切換功能
         function toggleTheme() {
             const body = document.body;
@@ -1022,11 +1111,11 @@
             
             if (isDarkTheme) {
                 body.classList.remove('dark-theme');
-                themeToggle.textContent = '🌙 切換暗色主題';
+                themeToggle.textContent = '🌙 暗色主題';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.classList.add('dark-theme');
-                themeToggle.textContent = '☀️ 切換亮色主題';
+                themeToggle.textContent = '☀️ 亮色主題';
                 localStorage.setItem('theme', 'dark');
             }
             
@@ -1043,10 +1132,10 @@
             
             if (savedTheme === 'dark') {
                 body.classList.add('dark-theme');
-                themeToggle.textContent = '☀️ 切換亮色主題';
+                themeToggle.textContent = '☀️ 亮色主題';
             } else {
                 body.classList.remove('dark-theme');
-                themeToggle.textContent = '🌙 切換暗色主題';
+                themeToggle.textContent = '🌙 暗色主題';
             }
         }
         
@@ -1346,7 +1435,7 @@
         }
         
         // 顯示滑鼠懸停提示框
-        const showTooltip = debounce((event, eventInfo) => {
+        function showTooltip(event, eventInfo) {
             removeTooltip();
             
             const tooltip = document.createElement('div');
@@ -1368,7 +1457,7 @@
             
             document.body.appendChild(tooltip);
             event.target._tooltip = tooltip;
-        }, 100);
+        }
         
         // 移除滑鼠懸停提示框
         function removeTooltip() {
