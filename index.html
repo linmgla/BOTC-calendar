@@ -677,17 +677,7 @@
         
         <div class="calendar-container">
             <div class="calendar-grid" id="calendarGrid">
-                <!-- 星期表頭 -->
-                <div class="weekday-header">
-                    <div class="weekday-cell">日</div>
-                    <div class="weekday-cell">一</div>
-                    <div class="weekday-cell">二</div>
-                    <div class="weekday-cell">三</div>
-                    <div class="weekday-cell">四</div>
-                    <div class="weekday-cell">五</div>
-                    <div class="weekday-cell">六</div>
-                </div>
-                <!-- 日曆內容會由JavaScript生成 -->
+                <!-- 星期表頭和日曆內容會由JavaScript生成 -->
             </div>
             
             <div class="status-bar" id="statusBar">
@@ -863,7 +853,6 @@
             grid.innerHTML = '';
             
             const y = 2026, m = 1;
-            const first = new Date(y, m-1, 1).getDay();
             const days = new Date(y, m, 0).getDate();
             const today = new Date().toISOString().split('T')[0];
             
@@ -872,17 +861,33 @@
             
             if (!isListMode) {
                 // 網格模式 - 按照(11)的網格樣式
-                // 添加星期表頭
+                // 先添加星期表頭
                 const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-                const weekdayHeader = document.createElement('div');
-                weekdayHeader.className = 'weekday-header';
                 weekdays.forEach(day => {
                     const weekdayCell = document.createElement('div');
                     weekdayCell.className = 'weekday-cell';
                     weekdayCell.textContent = day;
-                    weekdayHeader.appendChild(weekdayCell);
+                    grid.appendChild(weekdayCell);
                 });
-                grid.appendChild(weekdayHeader);
+                
+                // 2026年1月1日是星期四，所以前面需要添加空白單元格
+                // 星期天=0, 星期一=1, 星期二=2, 星期三=3, 星期四=4
+                // 所以需要添加4個空白單元格（日、一、二、三）
+                const firstDayOfMonth = new Date(y, m-1, 1).getDay(); // 2026年1月1日是星期四，所以是4
+                
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'day-cell';
+                    const isD = document.body.classList.contains('dark-theme');
+                    emptyCell.style.backgroundColor = isD ? '#2c2c2c' : '#f8f9fa';
+                    emptyCell.style.minHeight = '120px';
+                    emptyCell.style.display = 'flex';
+                    emptyCell.style.alignItems = 'center';
+                    emptyCell.style.justifyContent = 'center';
+                    emptyCell.style.color = isD ? '#666' : '#adb5bd';
+                    emptyCell.style.fontStyle = 'italic';
+                    grid.appendChild(emptyCell);
+                }
             }
             
             let total = 0;
@@ -909,16 +914,6 @@
                 const [y, m, d] = ds.split('-');
                 const dayNum = parseInt(d);
                 
-                // 如果是網格模式，需要添加空白單元格
-                if (!isListMode) {
-                    // 計算這一天在網格中的位置
-                    const dateObj = new Date(y, parseInt(m)-1, dayNum);
-                    const dayOfWeek = dateObj.getDay();
-                    const gridIndex = (parseInt(d) - 1) + first;
-                    
-                    // 如果這一天不是第一天且不在正確的星期位置，需要跳過（這部分由循環處理）
-                }
-                
                 const cell = document.createElement('div');
                 cell.className = 'day-cell';
                 if (ds === today) cell.classList.add('today');
@@ -932,7 +927,9 @@
                     (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query)));
 
                 if (filtered.length > 0) {
-                    cell.classList.add('has-events');
+                    if (isListMode) {
+                        cell.classList.add('has-events');
+                    }
                     total += filtered.length;
                     filtered.forEach(e => {
                         const div = document.createElement('div');
