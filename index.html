@@ -5,236 +5,627 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>血染鐘樓活動行事曆 by 曉風</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
             color: #333;
             background-color: #f8f9fa;
             padding: 20px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        body.dark-theme { color: #e9ecef; background-color: #121212; }
-        .container { max-width: 1400px; margin: 0 auto; width: 100%; }
+        
+        body.dark-theme {
+            color: #e9ecef;
+            background-color: #121212;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
         
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             padding: 20px;
             background: #6c757d;
-            border-radius: 12px;
+            border-radius: 15px;
             color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-direction: column;
         }
-        .dark-theme header { background: #2c2c2c; }
+        
+        .dark-theme header {
+            background: #2c2c2c;
+        }
         
         .header-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 20px;
         }
+        
         .header-logo {
-            width: 55px;
-            height: 55px;
+            width: 80px;
+            height: 80px;
             border-radius: 10px;
             overflow: hidden;
-            background: white;
+            background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid white;
+            border: 3px solid white;
         }
-        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
         
-        .title-container { display: flex; align-items: baseline; gap: 10px; }
-        h1 { font-size: 1.8rem; margin: 0; }
-        .by-text { font-size: 1rem; opacity: 0.9; }
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .by-text {
+            font-size: 1.1rem;
+            font-weight: normal;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
         
         .header-controls {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 20px;
             flex-wrap: wrap;
             justify-content: center;
         }
+        
         .btn-ctrl {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.1);
-            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
-            transition: all 0.2s;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
-        .btn-ctrl:hover { background: rgba(255,255,255,0.2); }
-        .btn-ctrl.active { background: rgba(255,255,255,0.4); border-color: white; }
-
+        
+        .btn-ctrl:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-ctrl.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: white;
+        }
+        
         .filters-container {
             background: white;
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
-        .dark-theme .filters-container { background: #2c2c2c; }
+        
+        .dark-theme .filters-container {
+            background: #2c2c2c;
+        }
+        
         .search-input {
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-radius: 8px;
             border: 1px solid #ddd;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-theme .search-input {
+            background: #1e1e1e;
+            border-color: #444;
+            color: white;
+        }
+        
+        .search-input:focus {
+            border-color: #4dabf7;
+            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .dark-theme .filter-label {
+            color: #ccc;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
             outline: none;
         }
-        .dark-theme .search-input { background: #1e1e1e; border-color: #444; color: white; }
-        .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-        .filter-btn {
-            padding: 6px 14px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            background: white;
-            transition: all 0.2s;
-        }
-
-        .calendar-wrapper {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            width: 100%;
-        }
-        .dark-theme .calendar-wrapper { background: #2c2c2c; }
         
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .filter-btn:active {
+            transform: translateY(0);
+        }
+        
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .dark-theme .calendar-container {
+            background: #2c2c2c;
+        }
+        
+        /* 網格模式樣式 */
         .view-grid .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            width: 100%;
-            min-width: 800px;
+            gap: 1px;
+            background: #e9ecef;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .weekday-header {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
+        
+        .dark-theme .view-grid .calendar-grid {
+            background: #444;
+            border-color: #444;
+        }
+        
+        .view-grid .weekday-header {
+            display: contents;
+        }
+        
+        .view-grid .weekday-cell {
             background: #495057;
             color: white;
-            min-width: 800px;
+            text-align: center;
+            padding: 15px 5px;
+            font-weight: 600;
         }
-        .weekday-cell { padding: 12px; text-align: center; font-size: 14px; font-weight: 600; }
-
-        .day-cell {
-            min-height: 130px;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        
+        .view-grid .day-cell {
+            background: white;
+            min-height: 120px;
+            padding: 12px;
+            position: relative;
+            border-bottom: 1px solid #f1f3f5;
         }
-        .dark-theme .day-cell { border-color: #444; }
-        .day-cell:nth-child(7n) { border-right: none; }
-        .day-cell.today { background: #fff9db; }
-        .dark-theme .day-cell.today { background: #2d2a1a; }
+        
+        .dark-theme .view-grid .day-cell {
+            background: #333;
+            border-bottom-color: #444;
+        }
+        
+        .view-grid .day-cell.today {
+            background-color: #fff9e6;
+            border: 2px solid #ffc107;
+            box-shadow: inset 0 0 8px rgba(255, 193, 7, 0.2);
+        }
+        
+        .dark-theme .view-grid .day-cell.today {
+            background-color: #2d2a1a;
+            border-color: #ffc107;
+        }
         
         .day-number {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 8px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
         }
-        .date-label { color: #868e96; font-size: 11px; }
-
-        .view-list .weekday-header { display: none; }
-        .view-list .calendar-grid { display: block; min-width: 0; }
-        .view-list .day-cell {
-            display: none;
-            min-height: auto;
-            border-right: none;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
+        
+        .dark-theme .day-number {
+            color: #e9ecef;
         }
-        .view-list .day-cell.has-events { display: flex; }
-        .view-list .day-number { font-size: 16px; color: #1a73e8; margin-bottom: 10px; }
-
+        
+        .date-text {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .dark-theme .date-text {
+            color: #aaa;
+        }
+        
         .event {
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 8px 10px;
+            margin: 6px 0;
+            font-size: 13px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
-            border-left: 4px solid transparent;
+            border-left: 4px solid;
+            display: flex;
+            align-items: center;
+            gap: 4px;
             white-space: nowrap;
             overflow: hidden;
+        }
+        
+        .event:hover {
+            transform: translateX(3px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .event-time {
+            font-weight: 600;
+            font-size: 12px;
+            min-width: 35px;
+        }
+        
+        .event-title {
+            font-weight: 500;
+            flex: 1;
+            overflow: hidden;
             text-overflow: ellipsis;
-            display: block;
-            width: 100%;
         }
-        .event:hover { transform: translateX(3px); filter: brightness(0.9); }
-        .event-time { font-weight: bold; margin-right: 6px; }
-
-        /* 過期活動樣式修正 - 保持文字顏色不變，僅調整背景透明度 */
-        .event.passed {
-            opacity: 0.6; /* 調整整體透明度來區分，但文字顏色仍會基於背景色呈現 */
-        }
-
+        
         .event.no-event {
-            background-color: #f1f3f5;
+            background-color: #f8f9fa;
             color: #adb5bd;
             border-left-color: #dee2e6;
             cursor: default;
         }
-        .event.no-event:hover { transform: translateX(3px); background-color: #e9ecef; }
-        .dark-theme .event.no-event { background-color: #252525; color: #666; border-left-color: #444; }
-
+        
+        .dark-theme .event.no-event {
+            background-color: #252525;
+            color: #666;
+            border-left-color: #444;
+        }
+        
+        .event.no-event:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* 過期活動樣式 */
+        .event.passed {
+            opacity: 0.7;
+        }
+        
+        /* 清單模式樣式 */
+        .view-list .weekday-header {
+            display: none;
+        }
+        
+        .view-list .calendar-grid {
+            display: block;
+            min-width: 0;
+            background: none;
+            border: none;
+        }
+        
+        .view-list .day-cell {
+            display: none;
+            min-height: auto;
+            border-bottom: 1px solid #eee;
+            padding: 15px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .dark-theme .view-list .day-cell {
+            background: #333;
+            border-bottom-color: #444;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .view-list .day-cell.has-events {
+            display: block;
+        }
+        
+        .view-list .day-cell.today {
+            background-color: #fff9e6;
+            border: 2px solid #ffc107;
+        }
+        
+        .dark-theme .view-list .day-cell.today {
+            background-color: #2d2a1a;
+            border-color: #ffc107;
+        }
+        
+        .view-list .day-number {
+            font-size: 16px;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+        
+        .dark-theme .view-list .day-number {
+            color: #4dabf7;
+        }
+        
+        .status-bar {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e7f5ff;
+            color: #1864ab;
+        }
+        
+        .dark-theme .status-bar {
+            background-color: #1a365d;
+            color: #a5d8ff;
+        }
+        
+        .status-indicator {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        /* 自定義提示框樣式 */
         .custom-tooltip {
             position: fixed;
-            background: rgba(51, 51, 51, 0.95);
+            background-color: #333;
             color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 12px;
-            z-index: 9999;
+            z-index: 1000;
+            max-width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             pointer-events: none;
-            display: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
         }
-
+        
+        .custom-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        /* 活動詳細資訊模態框 */
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .modal-overlay.active { display: flex; }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         .modal-box {
-            background: white;
+            background-color: white;
             border-radius: 12px;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
-        .dark-theme .modal-box { background: #2c2c2c; color: white; }
-        .modal-head { padding: 15px; background: #6c757d; color: white; text-align: center; }
-        .modal-body { padding: 20px; font-size: 14px; }
-        .modal-foot { padding: 15px; background: #f8f9fa; display: flex; justify-content: flex-end; gap: 10px; }
-        .dark-theme .modal-foot { background: #333; }
-        .m-btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-        .m-btn-p { background: #4dabf7; color: white; }
-        .m-btn-s { background: #adb5bd; color: white; }
-
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .calendar-wrapper { overflow-x: auto; }
+        
+        .dark-theme .modal-box {
+            background-color: #2c2c2c;
+        }
+        
+        .modal-head {
+            background-color: #6c757d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-head h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        
+        .modal-body {
+            padding: 24px;
+            font-size: 14px;
+        }
+        
+        .modal-body p {
+            margin-bottom: 12px;
+        }
+        
+        .modal-foot {
+            padding: 16px 24px 24px;
+            text-align: center;
+        }
+        
+        .m-btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin: 0 5px;
+        }
+        
+        .m-btn-p {
+            background-color: #4dabf7;
+            color: white;
+        }
+        
+        .m-btn-p:hover {
+            background-color: #339af0;
+        }
+        
+        .m-btn-s {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .m-btn-s:hover {
+            background-color: #5a6268;
+        }
+        
+        @media (max-width: 1200px) {
+            .view-grid .calendar-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .view-grid .calendar-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .view-grid .calendar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                width: 100%;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .by-text {
+                font-size: 0.9rem;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .status-indicator {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .view-grid .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .by-text {
+                font-size: 0.8rem;
+            }
+            
+            .view-grid .day-cell {
+                min-height: 100px;
+            }
+            
+            .m-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .btn-ctrl {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -258,21 +649,28 @@
                 <button class="btn-ctrl" id="refreshBtn">🔄 重新整理</button>
             </div>
         </header>
-
+        
         <div class="filters-container">
             <input type="text" id="searchInput" class="search-input" placeholder="搜尋劇本、說書人或地點...">
-            <div class="filters" id="filters"></div>
-        </div>
-
-        <div class="calendar-wrapper">
-            <div class="weekday-header">
-                <div class="weekday-cell">日</div><div class="weekday-cell">一</div><div class="weekday-cell">二</div>
-                <div class="weekday-cell">三</div><div class="weekday-cell">四</div><div class="weekday-cell">五</div>
-                <div class="weekday-cell">六</div>
+            <div class="filters" id="filters">
+                <div class="filter-label">地點篩選：</div>
+                <!-- 篩選按鈕會由JavaScript生成 -->
             </div>
-            <div class="calendar-grid" id="calendarGrid"></div>
         </div>
-
+        
+        <div class="calendar-container">
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- 星期表頭和日曆內容會由JavaScript生成 -->
+            </div>
+            
+            <div class="status-bar" id="statusBar">
+                <div id="statusText">顯示所有地點的活動</div>
+                <div class="status-indicator" id="statusIndicator">
+                    <!-- 狀態指示器會由JavaScript生成 -->
+                </div>
+            </div>
+        </div>
+        
         <div id="status" style="margin-top:15px; font-size:12px; color:#888; display:flex; justify-content:space-between;">
             <span id="countText">載入中...</span>
             <span id="timeText"></span>
@@ -299,9 +697,24 @@
         let query = "";
         
         const locConfig = {
-            "101鐘樓": { color: "#4dabf7", bg: "#e7f5ff", darkBg: "#1a365d" },
-            "歪常研究所": { color: "#da77f2", bg: "#f8f0fc", darkBg: "#3a1a4a" },
-            "小怪寶家長會": { color: "#3a8c4a", bg: "#e6f7e9", darkBg: "#1a3a1a" }
+            "101鐘樓": { 
+                color: "#4dabf7", 
+                bg: "#e7f5ff", 
+                darkBg: "#1a365d",
+                borderColor: "#4dabf7"
+            },
+            "歪常研究所": { 
+                color: "#da77f2", 
+                bg: "#f8f0fc", 
+                darkBg: "#3a1a4a",
+                borderColor: "#da77f2"
+            },
+            "小怪寶家長會": { 
+                color: "#3a8c4a", 
+                bg: "#e6f7e9", 
+                darkBg: "#1a3a1a",
+                borderColor: "#3a8c4a"
+            }
         };
 
         async function load(force = false) {
@@ -351,36 +764,38 @@
             }
         }
 
-        function render() {
-            const f = document.getElementById('filters');
-            f.innerHTML = '<span style="font-weight:600; font-size:13px;">地點篩選：</span>';
-            Object.keys(locConfig).forEach(l => {
-                const b = document.createElement('button');
-                b.className = 'filter-btn';
-                b.textContent = l;
-                const isH = hiddenLocs.has(l);
-                const c = locConfig[l];
-                const isD = document.body.classList.contains('dark-theme');
-                b.style.backgroundColor = isH ? (isD ? '#333' : '#eee') : (isD ? c.darkBg : c.bg);
-                b.style.color = isH ? '#888' : c.color;
-                b.style.border = `2px solid ${isH ? '#555' : c.color}`;
-                b.onclick = () => { if(hiddenLocs.has(l)) hiddenLocs.delete(l); else hiddenLocs.add(l); render(); };
-                f.appendChild(b);
-            });
-
+        function generateCalendarGrid() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
+            
+            // 生成星期表頭
+            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+            weekdays.forEach(day => {
+                const weekdayCell = document.createElement('div');
+                weekdayCell.className = 'weekday-cell';
+                weekdayCell.textContent = day;
+                grid.appendChild(weekdayCell);
+            });
+            
             const y = 2026, m = 1;
             const first = new Date(y, m-1, 1).getDay();
             const days = new Date(y, m, 0).getDate();
             const today = new Date().toISOString().split('T')[0];
-
+            
+            // 添加空白單元格
             for (let i=0; i<first; i++) {
-                const e = document.createElement('div');
-                e.className = 'day-cell';
-                grid.appendChild(e);
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'day-cell';
+                emptyCell.style.minHeight = '120px';
+                emptyCell.style.backgroundColor = '#f8f9fa';
+                emptyCell.style.display = 'flex';
+                emptyCell.style.alignItems = 'center';
+                emptyCell.style.justifyContent = 'center';
+                emptyCell.style.color = '#adb5bd';
+                emptyCell.style.fontStyle = 'italic';
+                grid.appendChild(emptyCell);
             }
-
+            
             let total = 0;
             for (let d=1; d<=days; d++) {
                 const ds = `${y}-${m.toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`;
@@ -390,7 +805,7 @@
 
                 const num = document.createElement('div');
                 num.className = 'day-number';
-                num.innerHTML = `<span>${m}/${d}</span><span class="date-label">${['日','一','二','三','四','五','六'][new Date(y, m-1, d).getDay()]}</span>`;
+                num.innerHTML = `<span>${m}/${d}</span><span class="date-text">${['日','一','二','三','四','五','六'][new Date(y, m-1, d).getDay()]}</span>`;
                 cell.appendChild(num);
 
                 const filtered = events.filter(e => e.date === ds && !hiddenLocs.has(e.loc) && 
@@ -402,24 +817,43 @@
                     filtered.forEach(e => {
                         const div = document.createElement('div');
                         div.className = 'event';
-                        const c = locConfig[e.loc] || { color: "#999", bg: "#f0f0f0", darkBg: "#333" };
+                        const c = locConfig[e.loc] || { color: "#999", bg: "#f0f0f0", darkBg: "#333", borderColor: "#999" };
                         const isD = document.body.classList.contains('dark-theme');
                         div.style.backgroundColor = isD ? c.darkBg : c.bg;
-                        div.style.color = isD ? '#fff' : c.color;
-                        div.style.borderLeftColor = c.color;
-                        div.innerHTML = `<span class="event-time">${e.time.substring(0,5)}</span>${e.script}`;
+                        div.style.color = isD ? '#fff' : '#333';
+                        div.style.borderLeftColor = c.borderColor;
+                        div.innerHTML = `<span class="event-time">${e.time.substring(0,5)}</span><span class="event-title">${e.script}</span>`;
                         
                         if (new Date() > new Date(`${e.date}T${e.time || '00:00'}`)) div.classList.add('passed');
                         
                         div.onmousemove = (ev) => {
                             const t = document.getElementById('tooltip');
                             t.textContent = `${e.loc} - ${e.script}`;
+                            t.style.opacity = '1';
                             t.style.display = 'block';
-                            t.style.left = (ev.clientX + 15) + 'px';
-                            t.style.top = (ev.clientY + 15) + 'px';
+                            
+                            const rect = div.getBoundingClientRect();
+                            let top = rect.top - 40;
+                            let left = rect.left + rect.width / 2;
+                            
+                            if (top < 10) {
+                                top = rect.bottom + 10;
+                            }
+                            
+                            t.style.transform = 'translateX(-50%)';
+                            t.style.top = `${top}px`;
+                            t.style.left = `${left}px`;
                         };
-                        div.onmouseleave = () => document.getElementById('tooltip').style.display = 'none';
-                        div.onclick = () => openModal(e);
+                        
+                        div.onmouseleave = () => {
+                            const t = document.getElementById('tooltip');
+                            t.style.opacity = '0';
+                            setTimeout(() => {
+                                t.style.display = 'none';
+                            }, 200);
+                        };
+                        
+                        div.onclick = () => openModal(e, {month: m, date: d, weekday: ['日','一','二','三','四','五','六'][new Date(y, m-1, d).getDay()]});
                         cell.appendChild(div);
                     });
                 } else {
@@ -433,11 +867,176 @@
             document.getElementById('countText').textContent = `共顯示 ${total} 個活動`;
         }
 
-        function openModal(e) {
+        function generateCalendarList() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            const y = 2026, m = 1;
+            const today = new Date().toISOString().split('T')[0];
+            let total = 0;
+            
+            // 收集所有有活動的日期
+            const daysWithEvents = new Set();
+            events.forEach(e => {
+                if (!hiddenLocs.has(e.loc) && (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query))) {
+                    daysWithEvents.add(e.date);
+                }
+            });
+            
+            // 按日期排序
+            const sortedDates = Array.from(daysWithEvents).sort();
+            
+            sortedDates.forEach(ds => {
+                const [y, m, d] = ds.split('-');
+                const cell = document.createElement('div');
+                cell.className = 'day-cell has-events';
+                if (ds === today) cell.classList.add('today');
+
+                const num = document.createElement('div');
+                num.className = 'day-number';
+                num.innerHTML = `<span>${parseInt(m)}/${parseInt(d)}</span><span class="date-text">${['日','一','二','三','四','五','六'][new Date(y, m-1, d).getDay()]}</span>`;
+                cell.appendChild(num);
+
+                const filtered = events.filter(e => e.date === ds && !hiddenLocs.has(e.loc) && 
+                    (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query)));
+
+                total += filtered.length;
+                filtered.forEach(e => {
+                    const div = document.createElement('div');
+                    div.className = 'event';
+                    const c = locConfig[e.loc] || { color: "#999", bg: "#f0f0f0", darkBg: "#333", borderColor: "#999" };
+                    const isD = document.body.classList.contains('dark-theme');
+                    div.style.backgroundColor = isD ? c.darkBg : c.bg;
+                    div.style.color = isD ? '#fff' : '#333';
+                    div.style.borderLeftColor = c.borderColor;
+                    div.innerHTML = `<span class="event-time">${e.time.substring(0,5)}</span><span class="event-title">${e.script}</span>`;
+                    
+                    if (new Date() > new Date(`${e.date}T${e.time || '00:00'}`)) div.classList.add('passed');
+                    
+                    div.onmousemove = (ev) => {
+                        const t = document.getElementById('tooltip');
+                        t.textContent = `${e.loc} - ${e.script}`;
+                        t.style.opacity = '1';
+                        t.style.display = 'block';
+                        
+                        const rect = div.getBoundingClientRect();
+                        let top = rect.top - 40;
+                        let left = rect.left + rect.width / 2;
+                        
+                        if (top < 10) {
+                            top = rect.bottom + 10;
+                        }
+                        
+                        t.style.transform = 'translateX(-50%)';
+                        t.style.top = `${top}px`;
+                        t.style.left = `${left}px`;
+                    };
+                    
+                    div.onmouseleave = () => {
+                        const t = document.getElementById('tooltip');
+                        t.style.opacity = '0';
+                        setTimeout(() => {
+                            t.style.display = 'none';
+                        }, 200);
+                    };
+                    
+                    div.onclick = () => openModal(e, {month: parseInt(m), date: parseInt(d), weekday: ['日','一','二','三','四','五','六'][new Date(y, m-1, d).getDay()]});
+                    cell.appendChild(div);
+                });
+                grid.appendChild(cell);
+            });
+            
+            document.getElementById('countText').textContent = `共顯示 ${total} 個活動`;
+        }
+
+        function render() {
+            // 生成篩選按鈕
+            const f = document.getElementById('filters');
+            f.innerHTML = '<div class="filter-label">地點篩選：</div>';
+            Object.keys(locConfig).forEach(l => {
+                const b = document.createElement('button');
+                b.className = 'filter-btn';
+                b.textContent = l;
+                const isH = hiddenLocs.has(l);
+                const c = locConfig[l];
+                const isD = document.body.classList.contains('dark-theme');
+                
+                if (isH) {
+                    b.style.backgroundColor = isD ? c.darkBg + '40' : '#f8f9fa';
+                    b.style.color = '#adb5bd';
+                    b.style.border = `2px solid ${isD ? '#555' : '#dee2e6'}`;
+                    b.style.opacity = '0.7';
+                } else {
+                    b.style.backgroundColor = isD ? c.darkBg : c.bg;
+                    b.style.color = isD ? '#fff' : c.color;
+                    b.style.border = `2px solid ${c.borderColor}`;
+                    b.style.opacity = '1';
+                }
+                
+                b.onclick = () => { 
+                    if(hiddenLocs.has(l)) {
+                        hiddenLocs.delete(l); 
+                    } else {
+                        hiddenLocs.add(l); 
+                    } 
+                    render(); 
+                };
+                f.appendChild(b);
+            });
+            
+            // 更新狀態欄
+            updateStatusBar();
+            
+            // 生成日曆
+            if (document.body.classList.contains('view-grid')) {
+                generateCalendarGrid();
+            } else {
+                generateCalendarList();
+            }
+        }
+
+        function updateStatusBar() {
+            const statusText = document.getElementById('statusText');
+            const statusIndicator = document.getElementById('statusIndicator');
+            
+            // 更新狀態文字
+            const hiddenCount = hiddenLocs.size;
+            if (hiddenCount === 0) {
+                statusText.textContent = "顯示所有地點的活動";
+            } else if (hiddenCount === 3) {
+                statusText.textContent = "所有地點活動皆已隱藏";
+            } else {
+                const hiddenList = Array.from(hiddenLocs).join('、');
+                statusText.textContent = `已隱藏：${hiddenList}`;
+            }
+            
+            // 更新狀態指示器
+            statusIndicator.innerHTML = '';
+            Object.keys(locConfig).forEach(loc => {
+                const isHidden = hiddenLocs.has(loc);
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot';
+                dot.style.background = locConfig[loc].color;
+                dot.style.opacity = isHidden ? '0.4' : '1';
+                
+                const text = document.createElement('span');
+                text.textContent = loc;
+                text.style.marginLeft = '5px';
+                text.style.opacity = isHidden ? '0.4' : '1';
+                
+                statusIndicator.appendChild(dot);
+                statusIndicator.appendChild(text);
+            });
+        }
+
+        function openModal(e, dayInfo) {
             document.getElementById('mTitle').textContent = e.script;
             document.getElementById('mBody').innerHTML = `
-                <p><b>日期：</b>${e.date}</p><p><b>時間：</b>${e.time}</p>
-                <p><b>地點：</b>${e.loc}</p><p><b>說書人：</b>${e.st}</p>
+                <p><b>日期：</b>${dayInfo.month}/${dayInfo.date}（${dayInfo.weekday}）</p>
+                <p><b>時間：</b>${e.time || '未指定'}</p>
+                <p><b>地點：</b>${e.loc}</p>
+                <p><b>劇本：</b>${e.script}</p>
+                <p><b>說書人：</b>${e.st}</p>
             `;
             const btn = document.getElementById('mLink');
             const passed = new Date() > new Date(`${e.date}T${e.time || '00:00'}`);
@@ -447,32 +1046,55 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        function closeModal() { 
+            document.getElementById('modal').classList.remove('active'); 
+        }
 
+        // 事件監聽器
         document.getElementById('gridBtn').onclick = () => {
             document.body.className = document.body.classList.contains('dark-theme') ? 'view-grid dark-theme' : 'view-grid';
             document.getElementById('gridBtn').classList.add('active');
             document.getElementById('listBtn').classList.remove('active');
+            render();
         };
+        
         document.getElementById('listBtn').onclick = () => {
             document.body.className = document.body.classList.contains('dark-theme') ? 'view-list dark-theme' : 'view-list';
             document.getElementById('listBtn').classList.add('active');
             document.getElementById('gridBtn').classList.remove('active');
+            render();
         };
+        
         document.getElementById('themeBtn').onclick = () => {
             const isD = document.body.classList.toggle('dark-theme');
             document.getElementById('themeBtn').textContent = isD ? '☀️ 亮色主題' : '🌙 暗色主題';
             localStorage.setItem('theme', isD ? 'dark' : 'light');
             render();
         };
+        
         document.getElementById('refreshBtn').onclick = () => load(true);
-        document.getElementById('searchInput').oninput = (e) => { query = e.target.value.trim(); render(); };
+        
+        document.getElementById('searchInput').oninput = (e) => { 
+            query = e.target.value.trim(); 
+            render(); 
+        };
 
+        // 初始化
         if (window.innerWidth <= 768) document.getElementById('listBtn').click();
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-theme');
             document.getElementById('themeBtn').textContent = '☀️ 亮色主題';
         }
+        
+        // 設定時間顯示
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('timeText').textContent = 
+                `更新時間: ${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+        }
+        setInterval(updateTime, 60000);
+        updateTime();
+        
         load();
     </script>
 </body>
