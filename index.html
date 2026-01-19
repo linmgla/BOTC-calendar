@@ -20,6 +20,11 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
+        body.light-theme {
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -39,6 +44,13 @@
             position: relative;
             flex-direction: column;
             border: 1px solid #333;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme header {
+            background: #6c757d;
+            color: white;
+            border: 1px solid #5a6268;
         }
         
         .header-content {
@@ -58,6 +70,12 @@
             align-items: center;
             justify-content: center;
             border: 3px solid #444;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .header-logo {
+            background-color: white;
+            border: 3px solid white;
         }
         
         .header-logo img {
@@ -77,6 +95,12 @@
             margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme h1 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         .by-text {
@@ -85,6 +109,12 @@
             color: rgba(255, 255, 255, 0.7);
             margin-top: 5px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .by-text {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
         .header-controls {
@@ -117,28 +147,26 @@
             background: rgba(255, 255, 255, 0.2);
         }
         
+        .light-theme .btn-ctrl {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .light-theme .btn-ctrl:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
         .btn-ctrl.active {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
             color: #fff;
         }
         
-        .theme-toggle {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            color: #e0e0e0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-left: auto;
-        }
-        
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .light-theme .btn-ctrl.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: white;
         }
         
         .filters-container {
@@ -148,6 +176,13 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             border: 1px solid #333;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .filters-container {
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
         .search-input {
@@ -163,13 +198,27 @@
             color: #e0e0e0;
         }
         
+        .light-theme .search-input {
+            border: 1px solid #ddd;
+            background-color: white;
+            color: #333;
+        }
+        
         .search-input:focus {
             border-color: #4dabf7;
             box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.3);
         }
         
+        .light-theme .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+        }
+        
         .search-input::placeholder {
             color: #888;
+        }
+        
+        .light-theme .search-input::placeholder {
+            color: #6c757d;
         }
         
         .filters {
@@ -182,6 +231,11 @@
         .filter-label {
             font-weight: 600;
             color: #aaa;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .filter-label {
+            color: #555;
         }
         
         .filter-btn {
@@ -202,6 +256,10 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
+        .light-theme .filter-btn:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
         .filter-btn:active {
             transform: translateY(0);
         }
@@ -214,6 +272,13 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             overflow: hidden;
             border: 1px solid #333;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .calendar-container {
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
         /* 網格模式 */
@@ -225,6 +290,12 @@
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .view-grid .calendar-grid {
+            background: #e9ecef;
+            border: 1px solid #e9ecef;
         }
         
         .view-grid .weekday-header {
@@ -238,6 +309,13 @@
             padding: 15px 5px;
             font-weight: 600;
             border-bottom: 1px solid #333;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .view-grid .weekday-cell {
+            background: #495057;
+            color: white;
+            border-bottom: 1px solid #dee2e6;
         }
         
         .view-grid .day-cell {
@@ -246,12 +324,24 @@
             padding: 12px;
             position: relative;
             border-bottom: 1px solid #2a2a2a;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .view-grid .day-cell {
+            background: white;
+            border-bottom: 1px solid #f1f3f5;
         }
         
         .view-grid .day-cell.today {
             background-color: #2a2a2a;
             border: 2px solid #4dabf7;
             box-shadow: inset 0 0 8px rgba(77, 171, 247, 0.2);
+        }
+        
+        .light-theme .view-grid .day-cell.today {
+            background-color: #fff9e6;
+            border: 2px solid #ffc107;
+            box-shadow: inset 0 0 8px rgba(255, 193, 7, 0.2);
         }
         
         .day-number {
@@ -262,11 +352,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .day-number {
+            color: #212529;
         }
         
         .date-text {
             font-size: 14px;
             color: #aaa;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .date-text {
+            color: #6c757d;
         }
         
         /* 事件樣式 */
@@ -290,6 +390,10 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.3);
         }
         
+        .light-theme .event:hover {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
         .event-time {
             font-weight: 600;
             font-size: 12px;
@@ -309,12 +413,23 @@
             color: #666;
             border-left-color: #444;
             cursor: default;
+            transition: background-color 0.3s ease, color 0.3s ease, border-left-color 0.3s ease;
         }
         
         .event.no-event:hover {
             transform: none;
             box-shadow: none;
             background-color: #2a2a2a;
+        }
+        
+        .light-theme .event.no-event {
+            background-color: #f1f3f5;
+            color: #adb5bd;
+            border-left-color: #dee2e6;
+        }
+        
+        .light-theme .event.no-event:hover {
+            background-color: #e9ecef;
         }
         
         /* 過期活動樣式 */
@@ -341,6 +456,13 @@
             margin-bottom: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .view-list .day-cell {
+            border-bottom: 1px solid #eee;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .view-list .day-cell.has-events {
@@ -350,6 +472,11 @@
         .view-list .day-cell.today {
             background-color: #2a2a2a;
             border: 2px solid #4dabf7;
+        }
+        
+        .light-theme .view-list .day-cell.today {
+            background-color: #fff9db;
+            border: 2px solid #ffc107;
         }
         
         .view-list .day-number {
@@ -371,6 +498,13 @@
             background-color: #2a2a2a;
             color: #e0e0e0;
             border: 1px solid #333;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .status-bar {
+            background-color: #e7f5ff;
+            color: #1864ab;
+            border: 1px solid #c5d9f0;
         }
         
         .status-indicator {
@@ -401,6 +535,13 @@
             transition: opacity 0.2s ease;
             white-space: nowrap;
             border: 1px solid #444;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .custom-tooltip {
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
         }
         
         .custom-tooltip::after {
@@ -412,6 +553,10 @@
             border-width: 5px;
             border-style: solid;
             border-color: #2a2a2a transparent transparent transparent;
+        }
+        
+        .light-theme .custom-tooltip::after {
+            border-color: #333 transparent transparent transparent;
         }
         
         /* 活動詳細資訊模態框 */
@@ -444,6 +589,13 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             border: 1px solid #444;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .modal-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .modal-header {
@@ -452,6 +604,12 @@
             padding: 20px;
             text-align: center;
             border-bottom: 1px solid #444;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .light-theme .modal-header {
+            background-color: #6c757d;
+            border-bottom: 1px solid #5a6268;
         }
         
         .modal-header h3 {
@@ -475,17 +633,32 @@
             color: #aaa;
             text-align: center;
             flex-shrink: 0;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .event-detail-icon {
+            color: #6c757d;
         }
         
         .event-detail-text {
             flex: 1;
             color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+        
+        .light-theme .event-detail-text {
+            color: #333;
         }
         
         .modal-footer {
             padding: 16px 24px 24px;
             text-align: center;
             border-top: 1px solid #333;
+            transition: border-color 0.3s ease;
+        }
+        
+        .light-theme .modal-footer {
+            border-top: 1px solid #eee;
         }
         
         .modal-btn {
@@ -606,10 +779,16 @@
             color: #666;
             font-style: italic;
             background-color: #1a1a1a;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .light-theme .day-cell.empty-cell {
+            color: #adb5bd;
+            background-color: #f8f9fa;
         }
     </style>
 </head>
-<body class="view-grid">
+<body class="view-grid dark-theme">
     <div class="container">
         <header>
             <div class="header-content">
@@ -626,7 +805,7 @@
                 <button class="btn-ctrl active" id="gridBtn">🖥️ 網格模式</button>
                 <button class="btn-ctrl" id="listBtn">📱 清單模式</button>
                 <button class="btn-ctrl" id="refreshBtn">🔄 重新整理</button>
-                <button class="btn-ctrl" id="themeToggle">🌙 切換亮色主題</button>
+                <button class="btn-ctrl" id="themeToggle">☀️ 切換亮色主題</button>
             </div>
         </header>
         
@@ -708,18 +887,21 @@
         
         const locConfig = {
             "101鐘樓": { 
+                darkBg: "#1e3a5f",
+                lightBg: "#e7f5ff",
                 color: "#4dabf7", 
-                bg: "#1e3a5f", 
                 borderColor: "#4dabf7"
             },
             "歪常研究所": { 
+                darkBg: "#3d1e5f",
+                lightBg: "#f8f0fc",
                 color: "#da77f2", 
-                bg: "#3d1e5f", 
                 borderColor: "#da77f2"
             },
             "小怪寶家長會": { 
+                darkBg: "#1e3a2a",
+                lightBg: "#e6f7e9",
                 color: "#3a8c4a", 
-                bg: "#1e3a2a", 
                 borderColor: "#3a8c4a"
             }
         };
@@ -729,77 +911,17 @@
             isDarkTheme = !isDarkTheme;
             
             if (isDarkTheme) {
-                document.body.style.backgroundColor = "#121212";
-                document.body.style.color = "#e0e0e0";
-                document.getElementById('themeToggle').textContent = "🌙 切換亮色主題";
-                
-                // 更新CSS變數或其他需要變更的樣式
-                document.querySelector('header').style.backgroundColor = "#1e1e1e";
-                document.querySelector('header').style.color = "#e0e0e0";
-                document.querySelector('.filters-container').style.backgroundColor = "#1e1e1e";
-                document.querySelector('.calendar-container').style.backgroundColor = "#1e1e1e";
-                
-                // 更新狀態欄
-                document.querySelector('.status-bar').style.backgroundColor = "#2a2a2a";
-                
-                // 更新星期表頭
-                const weekdayCells = document.querySelectorAll('.weekday-cell');
-                weekdayCells.forEach(cell => {
-                    cell.style.backgroundColor = "#2a2a2a";
-                    cell.style.color = "#e0e0e0";
-                });
-                
-                // 更新日曆單元格
-                const dayCells = document.querySelectorAll('.day-cell');
-                dayCells.forEach(cell => {
-                    cell.style.backgroundColor = "#1e1e1e";
-                });
-                
-                // 更新無活動樣式
-                const noEvents = document.querySelectorAll('.event.no-event');
-                noEvents.forEach(event => {
-                    event.style.backgroundColor = "#2a2a2a";
-                    event.style.color = "#666";
-                });
+                document.body.classList.remove('light-theme');
+                document.body.classList.add('dark-theme');
+                document.getElementById('themeToggle').textContent = "☀️ 切換亮色主題";
             } else {
-                // 切換到亮色主題
-                document.body.style.backgroundColor = "#f8f9fa";
-                document.body.style.color = "#333";
-                document.getElementById('themeToggle').textContent = "☀️ 切換暗色主題";
-                
-                // 更新CSS變數或其他需要變更的樣式
-                document.querySelector('header').style.backgroundColor = "#6c757d";
-                document.querySelector('header').style.color = "white";
-                document.querySelector('.filters-container').style.backgroundColor = "white";
-                document.querySelector('.calendar-container').style.backgroundColor = "white";
-                
-                // 更新狀態欄
-                document.querySelector('.status-bar').style.backgroundColor = "#e7f5ff";
-                document.querySelector('.status-bar').style.color = "#1864ab";
-                
-                // 更新星期表頭
-                const weekdayCells = document.querySelectorAll('.weekday-cell');
-                weekdayCells.forEach(cell => {
-                    cell.style.backgroundColor = "#495057";
-                    cell.style.color = "white";
-                });
-                
-                // 更新日曆單元格
-                const dayCells = document.querySelectorAll('.day-cell');
-                dayCells.forEach(cell => {
-                    cell.style.backgroundColor = "white";
-                });
-                
-                // 更新無活動樣式
-                const noEvents = document.querySelectorAll('.event.no-event');
-                noEvents.forEach(event => {
-                    event.style.backgroundColor = "#f1f3f5";
-                    event.style.color = "#adb5bd";
-                });
+                document.body.classList.remove('dark-theme');
+                document.body.classList.add('light-theme');
+                document.getElementById('themeToggle').textContent = "🌙 切換暗色主題";
             }
             
-            // 更新篩選按鈕顏色
-            updateFilterButtons();
+            // 重新渲染頁面以應用新的主題顏色
+            render();
         }
 
         async function load(force = false) {
@@ -849,41 +971,6 @@
             }
         }
 
-        function updateFilterButtons() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                const locName = button.textContent;
-                const isH = hiddenLocs.has(locName);
-                const c = locConfig[locName];
-                
-                if (c) {
-                    if (isH) {
-                        if (isDarkTheme) {
-                            button.style.backgroundColor = '#333';
-                            button.style.color = '#666';
-                            button.style.border = `2px solid #444`;
-                        } else {
-                            button.style.backgroundColor = '#eee';
-                            button.style.color = '#adb5bd';
-                            button.style.border = `2px solid #dee2e6`;
-                        }
-                    } else {
-                        if (isDarkTheme) {
-                            button.style.backgroundColor = c.bg;
-                            button.style.color = c.color;
-                            button.style.border = `2px solid ${c.borderColor}`;
-                        } else {
-                            button.style.backgroundColor = c.bg.replace("#1e3a5f", "#e7f5ff")
-                                .replace("#3d1e5f", "#f8f0fc")
-                                .replace("#1e3a2a", "#e6f7e9");
-                            button.style.color = c.color;
-                            button.style.border = `2px solid ${c.borderColor}`;
-                        }
-                    }
-                }
-            });
-        }
-
         function render() {
             // 生成篩選按鈕
             const f = document.getElementById('filters');
@@ -896,6 +983,7 @@
                 const c = locConfig[l];
                 
                 if (isH) {
+                    // 隱藏狀態
                     if (isDarkTheme) {
                         b.style.backgroundColor = '#333';
                         b.style.color = '#666';
@@ -906,14 +994,13 @@
                         b.style.border = `2px solid #dee2e6`;
                     }
                 } else {
+                    // 顯示狀態
                     if (isDarkTheme) {
-                        b.style.backgroundColor = c.bg;
+                        b.style.backgroundColor = c.darkBg;
                         b.style.color = c.color;
                         b.style.border = `2px solid ${c.borderColor}`;
                     } else {
-                        b.style.backgroundColor = c.bg.replace("#1e3a5f", "#e7f5ff")
-                            .replace("#3d1e5f", "#f8f0fc")
-                            .replace("#1e3a2a", "#e6f7e9");
+                        b.style.backgroundColor = c.lightBg;
                         b.style.color = c.color;
                         b.style.border = `2px solid ${c.borderColor}`;
                     }
@@ -952,20 +1039,11 @@
                     const weekdayCell = document.createElement('div');
                     weekdayCell.className = 'weekday-cell';
                     weekdayCell.textContent = day;
-                    if (isDarkTheme) {
-                        weekdayCell.style.backgroundColor = "#2a2a2a";
-                        weekdayCell.style.color = "#e0e0e0";
-                    } else {
-                        weekdayCell.style.backgroundColor = "#495057";
-                        weekdayCell.style.color = "white";
-                    }
                     grid.appendChild(weekdayCell);
                 });
                 
                 // 2026年1月1日是星期四，所以前面需要添加空白單元格
-                // 星期天=0, 星期一=1, 星期二=2, 星期三=3, 星期四=4
-                // 所以需要添加4個空白單元格（日、一、二、三）
-                const firstDayOfMonth = new Date(y, m-1, 1).getDay(); // 2026年1月1日是星期四，所以是4
+                const firstDayOfMonth = new Date(y, m-1, 1).getDay();
                 
                 for (let i = 0; i < firstDayOfMonth; i++) {
                     const emptyCell = document.createElement('div');
@@ -1001,20 +1079,7 @@
                 
                 const cell = document.createElement('div');
                 cell.className = 'day-cell';
-                if (isDarkTheme) {
-                    cell.style.backgroundColor = "#1e1e1e";
-                } else {
-                    cell.style.backgroundColor = "white";
-                }
-                
-                if (ds === today) {
-                    cell.classList.add('today');
-                    if (isDarkTheme) {
-                        cell.style.backgroundColor = "#2a2a2a";
-                    } else {
-                        cell.style.backgroundColor = "#fff9e6";
-                    }
-                }
+                if (ds === today) cell.classList.add('today');
 
                 const num = document.createElement('div');
                 num.className = 'day-number';
@@ -1032,19 +1097,20 @@
                     filtered.forEach(e => {
                         const div = document.createElement('div');
                         div.className = 'event';
-                        const c = locConfig[e.loc] || { color: "#999", bg: "#2a2a2a", borderColor: "#999" };
+                        const c = locConfig[e.loc] || { 
+                            darkBg: "#2a2a2a", 
+                            lightBg: "#f0f0f0", 
+                            color: "#999", 
+                            borderColor: "#999" 
+                        };
                         
+                        // 根據主題設置事件卡片顏色
                         if (isDarkTheme) {
-                            div.style.backgroundColor = c.bg;
+                            div.style.backgroundColor = c.darkBg;
                             div.style.color = '#e0e0e0';
                             div.style.borderLeftColor = c.borderColor;
                         } else {
-                            // 亮色主題的事件背景色
-                            const lightBg = c.bg.replace("#1e3a5f", "#e7f5ff")
-                                .replace("#3d1e5f", "#f8f0fc")
-                                .replace("#1e3a2a", "#e6f7e9")
-                                .replace("#2a2a2a", "#f0f0f0");
-                            div.style.backgroundColor = lightBg;
+                            div.style.backgroundColor = c.lightBg;
                             div.style.color = '#333';
                             div.style.borderLeftColor = c.borderColor;
                         }
@@ -1091,13 +1157,6 @@
                     const none = document.createElement('div');
                     none.className = 'event no-event';
                     none.textContent = '暫無活動';
-                    if (isDarkTheme) {
-                        none.style.backgroundColor = "#2a2a2a";
-                        none.style.color = "#666";
-                    } else {
-                        none.style.backgroundColor = "#f1f3f5";
-                        none.style.color = "#adb5bd";
-                    }
                     cell.appendChild(none);
                 }
                 grid.appendChild(cell);
@@ -1117,16 +1176,6 @@
             } else {
                 const hiddenList = Array.from(hiddenLocs).join('、');
                 statusText.textContent = `已隱藏：${hiddenList}`;
-            }
-            
-            // 更新狀態欄顏色
-            const statusBar = document.getElementById('statusBar');
-            if (isDarkTheme) {
-                statusBar.style.backgroundColor = "#2a2a2a";
-                statusBar.style.color = "#e0e0e0";
-            } else {
-                statusBar.style.backgroundColor = "#e7f5ff";
-                statusBar.style.color = "#1864ab";
             }
         }
 
@@ -1206,14 +1255,14 @@
 
         // 事件監聽器
         document.getElementById('gridBtn').onclick = () => {
-            document.body.className = 'view-grid';
+            document.body.className = isDarkTheme ? 'view-grid dark-theme' : 'view-grid light-theme';
             document.getElementById('gridBtn').classList.add('active');
             document.getElementById('listBtn').classList.remove('active');
             render();
         };
         
         document.getElementById('listBtn').onclick = () => {
-            document.body.className = 'view-list';
+            document.body.className = isDarkTheme ? 'view-list dark-theme' : 'view-list light-theme';
             document.getElementById('listBtn').classList.add('active');
             document.getElementById('gridBtn').classList.remove('active');
             render();
@@ -1230,7 +1279,9 @@
         document.getElementById('themeToggle').onclick = toggleTheme;
 
         // 初始化
-        if (window.innerWidth <= 768) document.getElementById('listBtn').click();
+        if (window.innerWidth <= 768) {
+            document.getElementById('listBtn').click();
+        }
         
         // 設定時間顯示
         function updateTime() {
