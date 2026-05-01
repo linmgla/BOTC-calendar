@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>血染鐘樓活動行事曆 by 曉風</title>
+    <title>血染鐘樓活動行事曆 by 曉風 - 2026年5月</title>
     <style>
         :root {
             /* 暗色主題變數 */
@@ -686,7 +686,7 @@
                 <div class="title-container">
                     <h1>
                         <span>血染鐘樓活動行事曆</span>
-                        <span class="by-text">by 曉風</span>
+                        <span class="by-text">by 曉風 (2026年5月)</span>
                     </h1>
                 </div>
             </div>
@@ -1027,12 +1027,12 @@
             // 更新狀態欄
             updateStatusBar();
             
-            // 生成日曆
+            // 生成日曆 - 顯示 2026年5月
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
             
-            const y = 2026, m = 1;
-            const days = new Date(y, m, 0).getDate();
+            const y = 2026, m = 5;  // 改成5月
+            const days = new Date(y, m, 0).getDate();  // 5月有31天
             const today = new Date().toISOString().split('T')[0];
             
             // 檢查是否是清單模式
@@ -1049,8 +1049,8 @@
                     grid.appendChild(weekdayCell);
                 });
                 
-                // 2026年1月1日是星期四，所以前面需要添加空白單元格
-                const firstDayOfMonth = new Date(y, m-1, 1).getDay();
+                // 2026年5月1日是星期五 (計算星期幾，0=星期日，5=星期五)
+                const firstDayOfMonth = new Date(y, m-1, 1).getDay();  // 5月1日星期幾
                 
                 for (let i = 0; i < firstDayOfMonth; i++) {
                     const emptyCell = document.createElement('div');
@@ -1065,37 +1065,41 @@
             // 如果是清單模式，只處理有活動的日期
             let dateRange = [];
             if (isListMode) {
-                // 收集所有有活動的日期
+                // 收集所有有活動且符合當前月份的日期
                 const datesWithEvents = new Set();
                 events.forEach(e => {
-                    if (!hiddenLocs.has(e.loc) && (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query))) {
+                    const [year, month, day] = e.date.split('-');
+                    if (parseInt(year) === y && parseInt(month) === m && 
+                        !hiddenLocs.has(e.loc) && 
+                        (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query))) {
                         datesWithEvents.add(e.date);
                     }
                 });
                 dateRange = Array.from(datesWithEvents).sort();
             } else {
-                // 網格模式：處理整個月的日期
+                // 網格模式：處理整個5月的日期
                 for (let d=1; d<=days; d++) {
                     dateRange.push(`${y}-${m.toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`);
                 }
             }
             
             dateRange.forEach(ds => {
-                const [y, m, d] = ds.split('-');
-                const dayNum = parseInt(d);
+                const [yy, mm, dd] = ds.split('-');
+                const dayNum = parseInt(dd);
+                const monthNum = parseInt(mm);
                 
                 const cell = document.createElement('div');
                 cell.className = 'day-cell';
                 if (ds === today) cell.classList.add('today');
-
+                
                 const num = document.createElement('div');
                 num.className = 'day-number';
-                num.innerHTML = `<span>${parseInt(m)}/${dayNum}</span><span class="date-text">${['日','一','二','三','四','五','六'][new Date(y, parseInt(m)-1, dayNum).getDay()]}</span>`;
+                num.innerHTML = `<span>${monthNum}/${dayNum}</span><span class="date-text">${['日','一','二','三','四','五','六'][new Date(yy, monthNum-1, dayNum).getDay()]}</span>`;
                 cell.appendChild(num);
-
+                
                 const filtered = events.filter(e => e.date === ds && !hiddenLocs.has(e.loc) && 
                     (!query || e.script.includes(query) || e.st.includes(query) || e.loc.includes(query)));
-
+                
                 if (filtered.length > 0) {
                     if (isListMode) {
                         cell.classList.add('has-events');
@@ -1151,9 +1155,9 @@
                         };
                         
                         div.onclick = () => openModal(e, {
-                            month: parseInt(m), 
+                            month: monthNum, 
                             date: dayNum, 
-                            weekday: ['日','一','二','三','四','五','六'][new Date(y, parseInt(m)-1, dayNum).getDay()]
+                            weekday: ['日','一','二','三','四','五','六'][new Date(yy, monthNum-1, dayNum).getDay()]
                         });
                         cell.appendChild(div);
                     });
@@ -1166,7 +1170,7 @@
                 grid.appendChild(cell);
             });
             
-            document.getElementById('countText').textContent = `共顯示 ${total} 個活動`;
+            document.getElementById('countText').textContent = `共顯示 ${total} 個活動 (2026年5月)`;
         }
 
         function updateStatusBar() {
